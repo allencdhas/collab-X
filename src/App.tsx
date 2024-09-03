@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createKintoSDK, KintoAccountInfo } from 'kinto-web-sdk';
 import {
   encodeFunctionData, Address, getContract,
-  defineChain, createPublicClient, http
+  defineChain, createPublicClient, http, parseAbi
 } from 'viem';
 
 import Header from 'components/Header/Header';
@@ -15,6 +15,8 @@ import numeral from 'numeral';
 import contractsJSON from '../public/abis/7887.json';
 import './App.css';
 import 'index.css';
+import appAbi from '../public/abis/appAbi.json';
+import { readContract } from 'viem/_types/actions/public/readContract';
 
 interface KYCViewerInfo {
   isIndividual: boolean;
@@ -25,34 +27,8 @@ interface KYCViewerInfo {
   getWalletOwners: Address[];
 }
 
-export const counterAbi = [
-  {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-  },
-  {
-      "inputs": [],
-      "name": "count",
-      "outputs": [
-          {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-          }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-  },
-  {
-      "inputs": [],
-      "name": "increment",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-  }
-]
-;
+export const counterAbi = appAbi.abi;
+
 
 const kinto = defineChain({
   id: 7887,
@@ -79,8 +55,10 @@ const KintoConnect = () => {
   const [kycViewerInfo, setKYCViewerInfo] = useState<any | undefined>(undefined);
   const [counter, setCounter] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
-  const kintoSDK = createKintoSDK('0x028265894cf4c50ce750c7b90ebd4f596881cdd0');
-  const counterAddress = "0x028265894cf4c50ce750c7b90ebd4f596881cdd0" as Address;
+  const kintoSDK = createKintoSDK('0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3');
+  const counterAddress = "0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3" as Address;
+
+  const [facetAddress, setFacetAddress] = useState<Address | undefined>(undefined);
 
   async function kintoLogin() {
     try {
@@ -90,36 +68,21 @@ const KintoConnect = () => {
     }
   }
 
-  async function fetchCounter() {
+  async function fetchFacetAddress() {
     const client = createPublicClient({
       chain: kinto,
       transport: http(),
     });
-    const counter = getContract({
-      address: counterAddress as Address,
+
+    const data = await client.readContract({
+      address: counterAddress,
       abi: counterAbi,
-      client: { public: client }
+      functionName: 'facets',
+      args: [],
     });
-    const count = await counter.read.count([]) as BigInt;
-    setCounter(parseInt(count.toString()));
+    console.log('Facet address:', data);
   }
 
-  async function increaseCounter() {
-    const data = encodeFunctionData({
-      abi: counterAbi,
-      functionName: 'increment',
-      args: []
-    });
-    setLoading(true);
-    try {
-      const response = await kintoSDK.sendTransaction([{ to: counterAddress, data, value: BigInt(0) }]);
-      await fetchCounter();
-    } catch (error) {
-      console.error('Failed to login/signup:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   async function fetchKYCViewerInfo() {
     if (!accountInfo?.walletAddress) return;
@@ -169,7 +132,8 @@ const KintoConnect = () => {
 
   useEffect(() => {
     fetchAccountInfo();
-    fetchCounter();
+    //fetchCounter();
+    fetchFacetAddress();
   });
 
   useEffect(() => {
@@ -185,6 +149,7 @@ const KintoConnect = () => {
         <Header />
       </div>
       <div>
+        {facetAddress}
         <Projects />
       </div>
     </main>
