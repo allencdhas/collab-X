@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { createKintoSDK, KintoAccountInfo } from 'kinto-web-sdk';
 import {
   encodeFunctionData, Address, getContract,
@@ -49,8 +51,8 @@ const kinto = defineChain({
 const Home = () => {
   const [accountInfo, setAccountInfo] = useState<KintoAccountInfo | undefined>(undefined);
   const [kycViewerInfo, setKYCViewerInfo] = useState<any | undefined>(undefined);
-  const [counter, setCounter] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
+
+  //const [loading, setLoading] = useState<boolean>(false);
   const kintoSDK = createKintoSDK('0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3');
   const counterAddress = "0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3" as Address;
 
@@ -76,6 +78,7 @@ const Home = () => {
       functionName: 'facets',
       args: [],
     });
+    // data is an array of addresses
     console.log('Facet address:', data);
   }
 
@@ -147,6 +150,15 @@ const Home = () => {
       <div>
         {facetAddress}
         <Projects />
+      </div>
+      <div className='flex justify-center pb-10'>
+            <div className=''>
+                <Link to="/create">
+                    <p className="py-3 px-7 bg-black text-white border-4 rounded-full hover:bg-purple-950 border-purple-950">+ Create Project</p>
+                </Link>
+            </div>
+            
+
       </div>
     </main>
   );

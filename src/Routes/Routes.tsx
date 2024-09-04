@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children:[
             {path: "/", element: <Home />},
-            {path: "/createproject", element: <CreateProject />},
+            {path: "/create", element: <CreateProject />},
             // {path: "/projects", element: <Home />},
             // {path: "/projects", element: <Home />}
         ]
