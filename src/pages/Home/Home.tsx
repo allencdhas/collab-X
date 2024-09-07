@@ -17,7 +17,6 @@ import Projects from 'components/Projects/Projects';
 import contractsJSON from '../../../public/abis/7887.json';
 import 'index.css';
 import appAbi from '../../../public/abis/appAbi.json';
-import { readContract } from 'viem/_types/actions/public/readContract';
 
 interface KYCViewerInfo {
   isIndividual: boolean;
@@ -59,7 +58,7 @@ const Home = () => {
   const kintoSDK = createKintoSDK('0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3');
   const collabxAddress = "0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3" as Address;
 
-  const [facetAddress, setFacetAddress] = useState<Address | undefined>(undefined);
+  //const [facetAddress, setFacetAddress] = useState<Address | undefined>(undefined);
 
   async function kintoLogin() {
     try {

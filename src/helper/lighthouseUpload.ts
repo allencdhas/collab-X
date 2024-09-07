@@ -2,7 +2,7 @@ import lighthouse from "@lighthouse-web3/sdk";
 
 
 async function sendLighthouse(title: string, description: string, artist:Array<string>, reward: string) {
-    
+
     const apiKey = 'ef462be0.cc060b9905364ad7a9b5a5df1772d35b';
 
     const metadata = {
@@ -18,7 +18,8 @@ async function sendLighthouse(title: string, description: string, artist:Array<s
       metadataString,
       apiKey
     )
-    console.log(res);
+    return res.data.cid;
+    //console.log(res.data.cid);
 
 }
 

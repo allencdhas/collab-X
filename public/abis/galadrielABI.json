@@ -1,0 +1,543 @@
+{
+    "address": "0xd1fB2a15545032a8170370d7eC47C0FC69A00eed",
+    "abi": [
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint8",
+            "name": "version",
+            "type": "uint8"
+          }
+        ],
+        "name": "Initialized",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "jobId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "enum ColabXCartoonCreation.JobStatus",
+            "name": "jobStatus",
+            "type": "uint8"
+          }
+        ],
+        "name": "JobUpdated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOracleAddress",
+            "type": "address"
+          }
+        ],
+        "name": "OracleAddressUpdated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "jobId",
+            "type": "uint256"
+          }
+        ],
+        "name": "checkJobId",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "a",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "b",
+            "type": "string"
+          }
+        ],
+        "name": "compareStrings",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "jobId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getJobDetails",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "message",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "response",
+                "type": "string"
+              },
+              {
+                "internalType": "enum ColabXCartoonCreation.JobStatus",
+                "name": "status",
+                "type": "uint8"
+              }
+            ],
+            "internalType": "struct ColabXCartoonCreation.Job",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "jobId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getJobStatus",
+        "outputs": [
+          {
+            "internalType": "enum ColabXCartoonCreation.JobStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "response",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "message",
+            "type": "string"
+          }
+        ],
+        "name": "initJob",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_oracleAddress",
+            "type": "address"
+          }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "jobCount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "jobs",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "response",
+            "type": "string"
+          },
+          {
+            "internalType": "enum ColabXCartoonCreation.JobStatus",
+            "name": "status",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "runId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "response",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "errorMessage",
+            "type": "string"
+          }
+        ],
+        "name": "onOracleFunctionResponse",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "oracleAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOracleAddress",
+            "type": "address"
+          }
+        ],
+        "name": "setOracleAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "transactionHash": "0xbf6f256507d5d6c4e63b14accc9277f4d055ca74f90d088b26d3a6f41b60167e",
+    "receipt": {
+      "to": "0x0000000000000000000000000000000000000000",
+      "from": "0x823531B7c7843D8c3821B19D70cbFb6173b9Cb02",
+      "contractAddress": "0xd1fB2a15545032a8170370d7eC47C0FC69A00eed",
+      "transactionIndex": 0,
+      "gasUsed": "1073289",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000000000400000000000200000000000000000000000000000010000000000000000000000000000000000000001000000000000000000400000000000000000020000000000000000000800000000000000000000000020000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000002010000800000020000000000000000000000200000000040000000000000000100000000000000000",
+      "blockHash": "0x006dcdc2e1a23325cb5a4c414530562bdb473d735987421991af3d1142edd83b",
+      "transactionHash": "0xbf6f256507d5d6c4e63b14accc9277f4d055ca74f90d088b26d3a6f41b60167e",
+      "logs": [
+        {
+          "transactionIndex": 0,
+          "blockNumber": 35224003,
+          "transactionHash": "0xbf6f256507d5d6c4e63b14accc9277f4d055ca74f90d088b26d3a6f41b60167e",
+          "address": "0xd1fB2a15545032a8170370d7eC47C0FC69A00eed",
+          "topics": [
+            "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "0x000000000000000000000000823531b7c7843d8c3821b19d70cbfb6173b9cb02"
+          ],
+          "data": "0x",
+          "logIndex": 0,
+          "blockHash": "0x006dcdc2e1a23325cb5a4c414530562bdb473d735987421991af3d1142edd83b"
+        },
+        {
+          "transactionIndex": 0,
+          "blockNumber": 35224003,
+          "transactionHash": "0xbf6f256507d5d6c4e63b14accc9277f4d055ca74f90d088b26d3a6f41b60167e",
+          "address": "0xd1fB2a15545032a8170370d7eC47C0FC69A00eed",
+          "topics": [
+            "0x107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb8",
+            "0x00000000000000000000000068ec9556830ad097d661df2557fbcec166a0a075"
+          ],
+          "data": "0x",
+          "logIndex": 1,
+          "blockHash": "0x006dcdc2e1a23325cb5a4c414530562bdb473d735987421991af3d1142edd83b"
+        }
+      ],
+      "blockNumber": 35224003,
+      "cumulativeGasUsed": "0",
+      "status": 1,
+      "byzantium": true
+    },
+    "args": [],
+    "numDeployments": 1,
+    "solcInputHash": "f0e134fdb8832ec13570b99c58979b70",
+    "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum ColabXCartoonCreation.JobStatus\",\"name\":\"jobStatus\",\"type\":\"uint8\"}],\"name\":\"JobUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOracleAddress\",\"type\":\"address\"}],\"name\":\"OracleAddressUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"checkJobId\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"a\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"b\",\"type\":\"string\"}],\"name\":\"compareStrings\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"getJobDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"response\",\"type\":\"string\"},{\"internalType\":\"enum ColabXCartoonCreation.JobStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"struct ColabXCartoonCreation.Job\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"getJobStatus\",\"outputs\":[{\"internalType\":\"enum ColabXCartoonCreation.JobStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"response\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"initJob\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_oracleAddress\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"jobCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"jobs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"response\",\"type\":\"string\"},{\"internalType\":\"enum ColabXCartoonCreation.JobStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"runId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"response\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"errorMessage\",\"type\":\"string\"}],\"name\":\"onOracleFunctionResponse\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracleAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOracleAddress\",\"type\":\"address\"}],\"name\":\"setOracleAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"Initialized(uint8)\":{\"details\":\"Triggered when the contract has been initialized or reinitialized.\"}},\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ColabXCartoonCreation.sol\":\"ColabXCartoonCreation\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (proxy/utils/Initializable.sol)\\n\\npragma solidity ^0.8.2;\\n\\nimport \\\"../../utils/AddressUpgradeable.sol\\\";\\n\\n/**\\n * @dev This is a base contract to aid in writing upgradeable contracts, or any kind of contract that will be deployed\\n * behind a proxy. Since proxied contracts do not make use of a constructor, it's common to move constructor logic to an\\n * external initializer function, usually called `initialize`. It then becomes necessary to protect this initializer\\n * function so it can only be called once. The {initializer} modifier provided by this contract will have this effect.\\n *\\n * The initialization functions use a version number. Once a version number is used, it is consumed and cannot be\\n * reused. This mechanism prevents re-execution of each \\\"step\\\" but allows the creation of new initialization steps in\\n * case an upgrade adds a module that needs to be initialized.\\n *\\n * For example:\\n *\\n * [.hljs-theme-light.nopadding]\\n * ```solidity\\n * contract MyToken is ERC20Upgradeable {\\n *     function initialize() initializer public {\\n *         __ERC20_init(\\\"MyToken\\\", \\\"MTK\\\");\\n *     }\\n * }\\n *\\n * contract MyTokenV2 is MyToken, ERC20PermitUpgradeable {\\n *     function initializeV2() reinitializer(2) public {\\n *         __ERC20Permit_init(\\\"MyToken\\\");\\n *     }\\n * }\\n * ```\\n *\\n * TIP: To avoid leaving the proxy in an uninitialized state, the initializer function should be called as early as\\n * possible by providing the encoded function call as the `_data` argument to {ERC1967Proxy-constructor}.\\n *\\n * CAUTION: When used with inheritance, manual care must be taken to not invoke a parent initializer twice, or to ensure\\n * that all initializers are idempotent. This is not verified automatically as constructors are by Solidity.\\n *\\n * [CAUTION]\\n * ====\\n * Avoid leaving a contract uninitialized.\\n *\\n * An uninitialized contract can be taken over by an attacker. This applies to both a proxy and its implementation\\n * contract, which may impact the proxy. To prevent the implementation contract from being used, you should invoke\\n * the {_disableInitializers} function in the constructor to automatically lock it when it is deployed:\\n *\\n * [.hljs-theme-light.nopadding]\\n * ```\\n * /// @custom:oz-upgrades-unsafe-allow constructor\\n * constructor() {\\n *     _disableInitializers();\\n * }\\n * ```\\n * ====\\n */\\nabstract contract Initializable {\\n    /**\\n     * @dev Indicates that the contract has been initialized.\\n     * @custom:oz-retyped-from bool\\n     */\\n    uint8 private _initialized;\\n\\n    /**\\n     * @dev Indicates that the contract is in the process of being initialized.\\n     */\\n    bool private _initializing;\\n\\n    /**\\n     * @dev Triggered when the contract has been initialized or reinitialized.\\n     */\\n    event Initialized(uint8 version);\\n\\n    /**\\n     * @dev A modifier that defines a protected initializer function that can be invoked at most once. In its scope,\\n     * `onlyInitializing` functions can be used to initialize parent contracts.\\n     *\\n     * Similar to `reinitializer(1)`, except that functions marked with `initializer` can be nested in the context of a\\n     * constructor.\\n     *\\n     * Emits an {Initialized} event.\\n     */\\n    modifier initializer() {\\n        bool isTopLevelCall = !_initializing;\\n        require(\\n            (isTopLevelCall && _initialized < 1) || (!AddressUpgradeable.isContract(address(this)) && _initialized == 1),\\n            \\\"Initializable: contract is already initialized\\\"\\n        );\\n        _initialized = 1;\\n        if (isTopLevelCall) {\\n            _initializing = true;\\n        }\\n        _;\\n        if (isTopLevelCall) {\\n            _initializing = false;\\n            emit Initialized(1);\\n        }\\n    }\\n\\n    /**\\n     * @dev A modifier that defines a protected reinitializer function that can be invoked at most once, and only if the\\n     * contract hasn't been initialized to a greater version before. In its scope, `onlyInitializing` functions can be\\n     * used to initialize parent contracts.\\n     *\\n     * A reinitializer may be used after the original initialization step. This is essential to configure modules that\\n     * are added through upgrades and that require initialization.\\n     *\\n     * When `version` is 1, this modifier is similar to `initializer`, except that functions marked with `reinitializer`\\n     * cannot be nested. If one is invoked in the context of another, execution will revert.\\n     *\\n     * Note that versions can jump in increments greater than 1; this implies that if multiple reinitializers coexist in\\n     * a contract, executing them in the right order is up to the developer or operator.\\n     *\\n     * WARNING: setting the version to 255 will prevent any future reinitialization.\\n     *\\n     * Emits an {Initialized} event.\\n     */\\n    modifier reinitializer(uint8 version) {\\n        require(!_initializing && _initialized < version, \\\"Initializable: contract is already initialized\\\");\\n        _initialized = version;\\n        _initializing = true;\\n        _;\\n        _initializing = false;\\n        emit Initialized(version);\\n    }\\n\\n    /**\\n     * @dev Modifier to protect an initialization function so that it can only be invoked by functions with the\\n     * {initializer} and {reinitializer} modifiers, directly or indirectly.\\n     */\\n    modifier onlyInitializing() {\\n        require(_initializing, \\\"Initializable: contract is not initializing\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Locks the contract, preventing any future reinitialization. This cannot be part of an initializer call.\\n     * Calling this in the constructor of a contract will prevent that contract from being initialized or reinitialized\\n     * to any version. It is recommended to use this to lock implementation contracts that are designed to be called\\n     * through proxies.\\n     *\\n     * Emits an {Initialized} event the first time it is successfully executed.\\n     */\\n    function _disableInitializers() internal virtual {\\n        require(!_initializing, \\\"Initializable: contract is initializing\\\");\\n        if (_initialized != type(uint8).max) {\\n            _initialized = type(uint8).max;\\n            emit Initialized(type(uint8).max);\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns the highest version that has been initialized. See {reinitializer}.\\n     */\\n    function _getInitializedVersion() internal view returns (uint8) {\\n        return _initialized;\\n    }\\n\\n    /**\\n     * @dev Returns `true` if the contract is currently initializing. See {onlyInitializing}.\\n     */\\n    function _isInitializing() internal view returns (bool) {\\n        return _initializing;\\n    }\\n}\\n\",\"keccak256\":\"0x89be10e757d242e9b18d5a32c9fbe2019f6d63052bbe46397a430a1d60d7f794\",\"license\":\"MIT\"},\"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (utils/Address.sol)\\n\\npragma solidity ^0.8.1;\\n\\n/**\\n * @dev Collection of functions related to the address type\\n */\\nlibrary AddressUpgradeable {\\n    /**\\n     * @dev Returns true if `account` is a contract.\\n     *\\n     * [IMPORTANT]\\n     * ====\\n     * It is unsafe to assume that an address for which this function returns\\n     * false is an externally-owned account (EOA) and not a contract.\\n     *\\n     * Among others, `isContract` will return false for the following\\n     * types of addresses:\\n     *\\n     *  - an externally-owned account\\n     *  - a contract in construction\\n     *  - an address where a contract will be created\\n     *  - an address where a contract lived, but was destroyed\\n     *\\n     * Furthermore, `isContract` will also return true if the target contract within\\n     * the same transaction is already scheduled for destruction by `SELFDESTRUCT`,\\n     * which only has an effect at the end of a transaction.\\n     * ====\\n     *\\n     * [IMPORTANT]\\n     * ====\\n     * You shouldn't rely on `isContract` to protect against flash loan attacks!\\n     *\\n     * Preventing calls from contracts is highly discouraged. It breaks composability, breaks support for smart wallets\\n     * like Gnosis Safe, and does not provide security since it can be circumvented by calling from a contract\\n     * constructor.\\n     * ====\\n     */\\n    function isContract(address account) internal view returns (bool) {\\n        // This method relies on extcodesize/address.code.length, which returns 0\\n        // for contracts in construction, since the code is only stored at the end\\n        // of the constructor execution.\\n\\n        return account.code.length > 0;\\n    }\\n\\n    /**\\n     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to\\n     * `recipient`, forwarding all available gas and reverting on errors.\\n     *\\n     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost\\n     * of certain opcodes, possibly making contracts go over the 2300 gas limit\\n     * imposed by `transfer`, making them unable to receive funds via\\n     * `transfer`. {sendValue} removes this limitation.\\n     *\\n     * https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/[Learn more].\\n     *\\n     * IMPORTANT: because control is transferred to `recipient`, care must be\\n     * taken to not create reentrancy vulnerabilities. Consider using\\n     * {ReentrancyGuard} or the\\n     * https://solidity.readthedocs.io/en/v0.8.0/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].\\n     */\\n    function sendValue(address payable recipient, uint256 amount) internal {\\n        require(address(this).balance >= amount, \\\"Address: insufficient balance\\\");\\n\\n        (bool success, ) = recipient.call{value: amount}(\\\"\\\");\\n        require(success, \\\"Address: unable to send value, recipient may have reverted\\\");\\n    }\\n\\n    /**\\n     * @dev Performs a Solidity function call using a low level `call`. A\\n     * plain `call` is an unsafe replacement for a function call: use this\\n     * function instead.\\n     *\\n     * If `target` reverts with a revert reason, it is bubbled up by this\\n     * function (like regular Solidity function calls).\\n     *\\n     * Returns the raw returned data. To convert to the expected return value,\\n     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].\\n     *\\n     * Requirements:\\n     *\\n     * - `target` must be a contract.\\n     * - calling `target` with `data` must not revert.\\n     *\\n     * _Available since v3.1._\\n     */\\n    function functionCall(address target, bytes memory data) internal returns (bytes memory) {\\n        return functionCallWithValue(target, data, 0, \\\"Address: low-level call failed\\\");\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with\\n     * `errorMessage` as a fallback revert reason when `target` reverts.\\n     *\\n     * _Available since v3.1._\\n     */\\n    function functionCall(\\n        address target,\\n        bytes memory data,\\n        string memory errorMessage\\n    ) internal returns (bytes memory) {\\n        return functionCallWithValue(target, data, 0, errorMessage);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but also transferring `value` wei to `target`.\\n     *\\n     * Requirements:\\n     *\\n     * - the calling contract must have an ETH balance of at least `value`.\\n     * - the called Solidity function must be `payable`.\\n     *\\n     * _Available since v3.1._\\n     */\\n    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {\\n        return functionCallWithValue(target, data, value, \\\"Address: low-level call with value failed\\\");\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but\\n     * with `errorMessage` as a fallback revert reason when `target` reverts.\\n     *\\n     * _Available since v3.1._\\n     */\\n    function functionCallWithValue(\\n        address target,\\n        bytes memory data,\\n        uint256 value,\\n        string memory errorMessage\\n    ) internal returns (bytes memory) {\\n        require(address(this).balance >= value, \\\"Address: insufficient balance for call\\\");\\n        (bool success, bytes memory returndata) = target.call{value: value}(data);\\n        return verifyCallResultFromTarget(target, success, returndata, errorMessage);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but performing a static call.\\n     *\\n     * _Available since v3.3._\\n     */\\n    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {\\n        return functionStaticCall(target, data, \\\"Address: low-level static call failed\\\");\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],\\n     * but performing a static call.\\n     *\\n     * _Available since v3.3._\\n     */\\n    function functionStaticCall(\\n        address target,\\n        bytes memory data,\\n        string memory errorMessage\\n    ) internal view returns (bytes memory) {\\n        (bool success, bytes memory returndata) = target.staticcall(data);\\n        return verifyCallResultFromTarget(target, success, returndata, errorMessage);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but performing a delegate call.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {\\n        return functionDelegateCall(target, data, \\\"Address: low-level delegate call failed\\\");\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],\\n     * but performing a delegate call.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function functionDelegateCall(\\n        address target,\\n        bytes memory data,\\n        string memory errorMessage\\n    ) internal returns (bytes memory) {\\n        (bool success, bytes memory returndata) = target.delegatecall(data);\\n        return verifyCallResultFromTarget(target, success, returndata, errorMessage);\\n    }\\n\\n    /**\\n     * @dev Tool to verify that a low level call to smart-contract was successful, and revert (either by bubbling\\n     * the revert reason or using the provided one) in case of unsuccessful call or if target was not a contract.\\n     *\\n     * _Available since v4.8._\\n     */\\n    function verifyCallResultFromTarget(\\n        address target,\\n        bool success,\\n        bytes memory returndata,\\n        string memory errorMessage\\n    ) internal view returns (bytes memory) {\\n        if (success) {\\n            if (returndata.length == 0) {\\n                // only check isContract if the call was successful and the return data is empty\\n                // otherwise we already know that it was a contract\\n                require(isContract(target), \\\"Address: call to non-contract\\\");\\n            }\\n            return returndata;\\n        } else {\\n            _revert(returndata, errorMessage);\\n        }\\n    }\\n\\n    /**\\n     * @dev Tool to verify that a low level call was successful, and revert if it wasn't, either by bubbling the\\n     * revert reason or using the provided one.\\n     *\\n     * _Available since v4.3._\\n     */\\n    function verifyCallResult(\\n        bool success,\\n        bytes memory returndata,\\n        string memory errorMessage\\n    ) internal pure returns (bytes memory) {\\n        if (success) {\\n            return returndata;\\n        } else {\\n            _revert(returndata, errorMessage);\\n        }\\n    }\\n\\n    function _revert(bytes memory returndata, string memory errorMessage) private pure {\\n        // Look for revert reason and bubble it up if present\\n        if (returndata.length > 0) {\\n            // The easiest way to bubble the revert reason is using memory via assembly\\n            /// @solidity memory-safe-assembly\\n            assembly {\\n                let returndata_size := mload(returndata)\\n                revert(add(32, returndata), returndata_size)\\n            }\\n        } else {\\n            revert(errorMessage);\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x9c80f545915582e63fe206c6ce27cbe85a86fc10b9cd2a0e8c9488fb7c2ee422\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _transferOwnership(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xba43b97fba0d32eb4254f6a5a297b39a19a247082a02d6e69349e071e2946218\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.4) (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0xa92e4fa126feb6907daa0513ddd816b2eb91f30a808de54f63c17d0e162c3439\",\"license\":\"MIT\"},\"contracts/ColabXCartoonCreation.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.20;\\n\\nimport \\\"./interfaces/IOracle.sol\\\";\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\nimport \\\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\\\";\\nimport {OracleClient} from \\\"./OracleClient.sol\\\";\\nimport {IOracleClient} from \\\"./interfaces/IOracleClient.sol\\\";\\n\\ncontract ColabXCartoonCreation is Ownable, Initializable, OracleClient {\\n    uint public jobCount;\\n\\n    enum JobStatus { InProgress, Success, Failed }\\n\\n    event JobUpdated (uint indexed jobId, JobStatus jobStatus);\\n\\n    struct Job {\\n        uint id;\\n        string message;\\n        string response;     // The oracle response (success or error message)\\n        JobStatus status;    // The status of the job (in progress, success, or failed)\\n    }\\n\\n    // Mapping from job ID to Job details\\n    mapping(uint => Job) public jobs;\\n\\n    function initialize(address _oracleAddress) public initializer {\\n        setOracleAddress(_oracleAddress);\\n    }\\n\\n    // Initiate a new job with a message for the oracle\\n    function initJob(string memory message) public returns (uint) {\\n        uint currentId = jobCount;\\n        jobCount++;\\n\\n        JobStatus jobStatus = JobStatus.InProgress;\\n\\n        // Store the job details in the mapping with status InProgress\\n        jobs[currentId] = Job({\\n            id:currentId,\\n            message: message,\\n            response: \\\"\\\",\\n            status: jobStatus\\n        });\\n\\n        // Call the oracle to create the function call\\n        IOracle(oracleAddress).createFunctionCall(\\n            currentId,\\n            \\\"image_generation\\\",\\n            message\\n        );\\n\\n        emit JobUpdated(currentId, jobStatus);\\n\\n        return currentId;\\n    }\\n\\n\\n    function checkJobId (uint jobId) public view returns (bool){\\n//        require(jobId < jobCount, \\\"Invalid job ID\\\");\\n        return jobId<jobCount;\\n    }\\n\\n    // Handle the response from the oracle\\n    function onOracleFunctionResponse(\\n        uint runId,\\n        string memory response,\\n        string memory errorMessage\\n    ) public onlyOracle {\\n        require(runId < jobCount, \\\"Invalid job ID\\\");\\n\\n        bool isSuccess = bytes(response).length!=0;\\n\\n        Job storage job = jobs[runId];\\n\\n        if (isSuccess) {\\n            job.status = JobStatus.Success;\\n            job.response = response;\\n        } else {\\n            job.status = JobStatus.Failed;\\n            job.response = errorMessage;\\n        }\\n\\n        emit JobUpdated(runId, job.status);\\n    }\\n\\n    // Retrieve the details of a job by job ID\\n    function getJobDetails(uint jobId) public view returns (Job memory) {\\n        require(jobId < jobCount, \\\"Invalid job ID\\\");\\n        return jobs[jobId];\\n    }\\n\\n    // Get the status and response for a specific job\\n    function getJobStatus(uint jobId) public view returns (JobStatus status, string memory response) {\\n        require(jobId < jobCount, \\\"Invalid job ID\\\");\\n\\n        Job storage job = jobs[jobId];\\n        return (job.status, job.response);\\n    }\\n\\n    function compareStrings(string memory a, string memory b) public pure returns (bool) {\\n        return keccak256(abi.encodePacked(a)) == keccak256(abi.encodePacked(b));\\n    }\\n}\\n\",\"keccak256\":\"0x6f184dc6d6026df182e7961174f25af870e8bbe8b20e60c591bfbb359c1d26a0\",\"license\":\"MIT\"},\"contracts/OracleClient.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.20;\\n\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\nimport {IOracleClient} from \\\"./interfaces/IOracleClient.sol\\\";\\n\\nabstract contract OracleClient is Ownable, IOracleClient{\\n    address public oracleAddress;\\n    event OracleAddressUpdated(address indexed newOracleAddress);\\n\\n    constructor(){\\n        address defaultOracle = address(0x68EC9556830AD097D661Df2557FBCeC166a0A075);\\n        setOracleAddress(defaultOracle);\\n    }\\n\\n    modifier onlyOracle() {\\n        require(msg.sender == oracleAddress, \\\"Caller is not oracle\\\");\\n        _;\\n    }\\n\\n    function setOracleAddress(address newOracleAddress) public onlyOwner {\\n        require(newOracleAddress != address(0), \\\"Invalid Oracle Address: zero address\\\");\\n        require(oracleAddress!=newOracleAddress, \\\"Oracle Address is same\\\");\\n        oracleAddress = newOracleAddress;\\n        emit OracleAddressUpdated(newOracleAddress);\\n    }\\n}\\n\",\"keccak256\":\"0xe8a0853dcec611400b38f95d03a48c3578472fb9ddc34cd8e9ba6fae80904f30\",\"license\":\"MIT\"},\"contracts/interfaces/IOracle.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.13;\\n\\ninterface IOracle {\\n    struct Content {\\n        string contentType;\\n        string value;\\n    }\\n\\n    struct Message {\\n        string role;\\n        Content[] content;\\n    }\\n\\n    struct OpenAiRequest {\\n        // \\\"gpt-4-turbo\\\", \\\"gpt-4-turbo-preview\\\" or \\\"gpt-3.5-turbo-1106\\\"\\n        string model;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 frequencyPenalty;\\n        // JSON string or empty string\\n        string logitBias;\\n        // 0 for null\\n        uint32 maxTokens;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 presencePenalty;\\n        // JSON string or empty string\\n        string responseFormat;\\n        // 0 for null\\n        uint seed;\\n        // empty str for null\\n        string stop;\\n        // 0-20, > 20 for null\\n        uint temperature;\\n        // 0-100  percentage, > 100 for null\\n        uint topP;\\n        // JSON list for tools in OpenAI format, empty for null, names have to match the supported tools\\n        string tools;\\n        // \\\"none\\\", \\\"auto\\\" or empty str which defaults to auto on OpenAI side\\n        string toolChoice;\\n        string user;\\n    }\\n\\n    struct OpenAiResponse {\\n        string id;\\n        // either content is an empty str or functionName and functionArguments\\n        string content;\\n        string functionName;\\n        string functionArguments;\\n        uint64 created;\\n        string model;\\n        string systemFingerprint;\\n        // kind of pointless since its always \\\"chat.completion\\\"?\\n        string object;\\n        uint32 completionTokens;\\n        uint32 promptTokens;\\n        uint32 totalTokens;\\n    }\\n\\n    struct GroqRequest {\\n        // \\\"llama3-8b-8192\\\", \\\"llama3-70b-8192\\\", \\\"mixtral-8x7b-32768\\\" or \\\"gemma-7b-it\\\"\\n        string model;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 frequencyPenalty;\\n        // JSON string or empty string\\n        string logitBias;\\n        // 0 for null\\n        uint32 maxTokens;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 presencePenalty;\\n        // JSON string or empty string\\n        string responseFormat;\\n        // 0 for null\\n        uint seed;\\n        // empty str for null\\n        string stop;\\n        // 0-20, > 20 for null\\n        uint temperature;\\n        // 0-100  percentage, > 100 for null\\n        uint topP;\\n        string user;\\n    }\\n\\n    struct GroqResponse {\\n        string id;\\n        string content;\\n        uint64 created;\\n        string model;\\n        string systemFingerprint;\\n        // kind of pointless since its always \\\"chat.completion\\\"?\\n        string object;\\n        uint32 completionTokens;\\n        uint32 promptTokens;\\n        uint32 totalTokens;\\n    }\\n\\n    struct LlmRequest {\\n        // \\\"claude-3-5-sonnet-20240620\\\", \\\"claude-3-opus-20240229\\\", \\\"claude-3-sonnet-20240229\\\", \\\"claude-3-haiku-20240307\\\", \\\"claude-2.1\\\", \\\"claude-2.0\\\", \\\"claude-instant-1.2\\\"\\n        string model;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 frequencyPenalty;\\n        // JSON string or empty string\\n        string logitBias;\\n        // 0 for null\\n        uint32 maxTokens;\\n        // int -20 - 20, Mapped to float -2.0 - 2.0. If bigger than 20 then null\\n        int8 presencePenalty;\\n        // JSON string or empty string\\n        string responseFormat;\\n        // 0 for null\\n        uint seed;\\n        // empty str for null\\n        string stop;\\n        // 0-20, > 20 for null\\n        uint temperature;\\n        // 0-100  percentage, > 100 for null\\n        uint topP;\\n        // JSON list for tools in OpenAI format, empty for null, names have to match the supported tools\\n        string tools;\\n        // \\\"none\\\", \\\"auto\\\" or empty str which defaults to auto on OpenAI side\\n        string toolChoice;\\n        string user;\\n    }\\n\\n    struct LlmResponse {\\n        string id;\\n        // either content is an empty str or functionName and functionArguments\\n        string content;\\n        string functionName;\\n        string functionArguments;\\n        uint64 created;\\n        string model;\\n        string systemFingerprint;\\n        // kind of pointless since its always \\\"chat.completion\\\"?\\n        string object;\\n        uint32 completionTokens;\\n        uint32 promptTokens;\\n        uint32 totalTokens;\\n    }\\n\\n    struct KnowledgeBaseQueryRequest {\\n        string cid;\\n        string query;\\n        uint32 num_documents;\\n    }\\n\\n    function createLlmCall(uint promptId) external returns (uint);\\n\\n    function createLlmCall(\\n        uint promptId,\\n        LlmRequest memory request\\n    ) external returns (uint);\\n\\n    function createGroqLlmCall(\\n        uint promptId,\\n        GroqRequest memory request\\n    ) external returns (uint);\\n\\n    function createOpenAiLlmCall(\\n        uint promptId,\\n        OpenAiRequest memory request\\n    ) external returns (uint);\\n\\n    function createFunctionCall(\\n        uint functionCallbackId,\\n        string memory functionType,\\n        string memory functionInput\\n    ) external returns (uint i);\\n\\n    function createKnowledgeBaseQuery(\\n        uint kbQueryCallbackId,\\n        string memory cid,\\n        string memory query,\\n        uint32 num_documents\\n    ) external returns (uint i);\\n}\\n\",\"keccak256\":\"0xce0693f0a40c10c25fa3d8f42b106307aecb8d6c8a8b38b1c93d2ab4deccd29d\",\"license\":\"UNLICENSED\"},\"contracts/interfaces/IOracleClient.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.13;\\n\\ninterface IOracleClient {\\n    function onOracleFunctionResponse(\\n        uint callbackId,\\n        string memory response,\\n        string memory errorMessage\\n    ) external;\\n}\\n\",\"keccak256\":\"0x4ff7c472a96ed1ec72914858c249a9aab48fd956053f9bef3a7c2e9efdec46d6\",\"license\":\"MIT\"}},\"version\":1}",
+    "bytecode": "0x608080604052346100ec57600080546001600160a01b03198082163390811784556001600160a01b039283167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08580a36001547368ec9556830ad097d661df2557fbcec166a0a07580938216146100aa57168117600155604051917f107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb89080a261118990816100f28239f35b62461bcd60e51b855260206004860152601660248601527f4f7261636c6520416464726573732069732073616d65000000000000000000006044860152606485fd5b600080fdfe608080604052600436101561001357600080fd5b60003560e01c908163145dfca814610eb557508063180aedf314610e355780634c5d8a0f14610e175780634c69c00f14610da05780634cac35c614610cb957806351cc0ba1146108bb578063715018a6146108625780637397454d146105065780638da5cb5b146104dd578063a6c58b6314610474578063a89ae4ba1461044b578063bed34bba146103a7578063c4d66de8146101895763f2fde38b146100b957600080fd5b34610184576020366003190112610184576004356001600160a01b0381811691829003610184576100e861109e565b811561013057600054826bffffffffffffffffffffffff60a01b821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0600080a3005b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608490fd5b600080fd5b34610184576020366003190112610184576004356001600160a01b0381811691829003610184576000549060ff8260a81c161591828093610397575b801561037d575b156103215760ff60a01b198116600160a01b1760005582610309575b506101f161109e565b82156102b857826001549182161461027a576001600160a01b0319168217600155604051917f107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb8600080a261024157005b6000805460ff60a81b19169055600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb384740249890602090a1005b60405162461bcd60e51b81526020600482015260166024820152754f7261636c6520416464726573732069732073616d6560501b6044820152606490fd5b60405162461bcd60e51b8152602060048201526024808201527f496e76616c6964204f7261636c6520416464726573733a207a65726f206164646044820152637265737360e01b6064820152608490fd5b61ffff60a01b191661010160a01b17600055836101e8565b60405162461bcd60e51b815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201526d191e481a5b9a5d1a585b1a5e995960921b6064820152608490fd5b50303b1580156101cc5750600160ff8260a01c16146101cc565b50600160ff8260a01c16106101c5565b346101845760403660031901126101845767ffffffffffffffff600435818111610184576103d9903690600401611047565b90602435908111610184576103f2903690600401611047565b6040519160209261041f8482816104128183019687815193849201610ff2565b8101038084520182610f2a565b5190209060405161043f8482816104128183019687815193849201610ff2565b51902014604051908152f35b34610184576000366003190112610184576001546040516001600160a01b039091168152602090f35b346101845760203660031901126101845760043561049560025482106110f6565b60005260036020526104c860406000206104d96104bc600260ff6003850154169301610f4c565b6040519384809461103a565b604060208401526040830190611015565b0390f35b34610184576000366003190112610184576000546040516001600160a01b039091168152602090f35b346101845760603660031901126101845767ffffffffffffffff6004356024358281116101845761053b903690600401611047565b60443583811161018457610553903690600401611047565b60018054919290916001600160a01b031633036108265761057760025485106110f6565b8051151590846000526003926020948486526040600020936000146106fc57508383018160ff19825416179055600283019180519788116106e6576105bc8354610ed4565b601f811161069d575b508590601f891160011461062557978060ff9695949381936000805160206111348339815191529a9b60009461061a575b50501b9160001990861b1c19161790555b015416610617604051809261103a565ba2005b015192508b806105f6565b9790601f1982169884600052876000209960005b818110610688575091600080516020611134833981519152999a918460ff99989796959410610670575b505050811b019055610607565b015160001983881b60f8161c19169055898080610663565b838301518c559a85019a928901928901610639565b8360005286600020601f8a0160051c810191888b106106dc575b601f0160051c019083905b8281106106d05750506105c5565b600081550183906106c2565b90915081906106b7565b634e487b7160e01b600052604160045260246000fd5b9150838301600260ff19825416179055600283019180519788116106e6576107248354610ed4565b601f81116107dd575b508590601f891160011461077e57978060ff9695949381936000805160206111348339815191529a9b600094610773575b50501b9160001990861b1c1916179055610607565b015192508b8061075e565b9790601f1982169884600052876000209960005b8181106107c8575091600080516020611134833981519152999a918460ff9998979695941061067057505050811b019055610607565b838301518c559a85019a928901928901610792565b8360005286600020601f8a0160051c810191888b1061081c575b601f0160051c019083905b82811061081057505061072d565b60008155018390610802565b90915081906107f7565b60405162461bcd60e51b815260206004820152601460248201527343616c6c6572206973206e6f74206f7261636c6560601b6044820152606490fd5b346101845760003660031901126101845761087b61109e565b600080546001600160a01b0319811682556001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b346101845760203660031901126101845760043567ffffffffffffffff8111610184576108ec903690600401611047565b600254906000198214610ca3576001820160025560405161090c81610f0e565b828152602081018281526040516020810181811067ffffffffffffffff8211176106e65760405260008152604083015260006060830152836000526003602052604060002090825182555180519067ffffffffffffffff82116106e65781906109786001850154610ed4565b601f8111610c50575b50602090601f8311600114610be357600092610bd8575b50508160011b916000199060031b1c19161760018201555b604082015180519067ffffffffffffffff82116106e6576109d46002840154610ed4565b601f8111610b91575b50602090601f8311600114610b1f57918060609492600394600092610b14575b50508160011b9160001990851b1c19161760028201555b019101516003811015610afe57600092602092610a949260ff8019835416911617905560018060a01b036001541690604051948580948193634b04236b60e01b835289600484015260606024840152601060648401526f34b6b0b3b2afb3b2b732b930ba34b7b760811b608484015260a0604484015260a4830190611015565b03925af18015610af257610ac7575b602082806000805160206111348339815191528360405160008152a2604051908152f35b602090813d8311610aeb575b610add8183610f2a565b810103126101845781610aa3565b503d610ad3565b6040513d6000823e3d90fd5b634e487b7160e01b600052602160045260246000fd5b0151905088806109fd565b90601f198316916002850160005260206000209260005b818110610b7957509260019285926003966060989610610b61575b505050811b016002820155610a14565b015160001983871b60f8161c19169055888080610b51565b92936020600181928786015181550195019301610b36565b600284016000526020600020601f840160051c810160208510610bd1575b601f830160051c82018110610bc55750506109dd565b60008155600101610baf565b5080610baf565b015190508680610998565b600185016000908152602081209350601f198516905b818110610c385750908460019594939210610c1f575b505050811b0160018201556109b0565b015160001960f88460031b161c19169055868080610c0f565b92936020600181928786015181550195019301610bf9565b909150600184016000526020600020601f840160051c810160208510610c9c575b90849392915b601f830160051c82018110610c8d575050610981565b60008155859450600101610c77565b5080610c71565b634e487b7160e01b600052601160045260246000fd5b34610184576020806003193601126101845760043560006060604051610cde81610f0e565b82815281858201528160408201520152610cfb60025482106110f6565b60005260038152604060002060405190610d1482610f0e565b80548252610d2460018201610f4c565b83830190815260ff6003610d3a60028501610f4c565b93604086019485520154169060608401926003831015610afe57610d81610d94926104d99486526040519788978189525190880152516080604088015260a0870190611015565b9051858203601f19016060870152611015565b9151608084019061103a565b34610184576020366003190112610184576004356001600160a01b038181169182900361018457610dcf61109e565b81156102b857816001549182161461027a576001600160a01b03191681176001557f107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb8600080a2005b34610184576000366003190112610184576020600254604051908152f35b3461018457602036600319011261018457600435600052600360205260406000208054610e6460018301610f4c565b916104d9610eaa60ff6003610e7b60028601610f4c565b9401541692610e9c6040519687968752608060208801526080870190611015565b908582036040870152611015565b91606084019061103a565b3461018457602036600319011261018457602090600254600435108152f35b90600182811c92168015610f04575b6020831014610eee57565b634e487b7160e01b600052602260045260246000fd5b91607f1691610ee3565b6080810190811067ffffffffffffffff8211176106e657604052565b90601f8019910116810190811067ffffffffffffffff8211176106e657604052565b9060405191826000825492610f6084610ed4565b908184526001948581169081600014610fcf5750600114610f8c575b5050610f8a92500383610f2a565b565b9093915060005260209081600020936000915b818310610fb7575050610f8a93508201013880610f7c565b85548884018501529485019487945091830191610f9f565b915050610f8a94506020925060ff191682840152151560051b8201013880610f7c565b60005b8381106110055750506000910152565b8181015183820152602001610ff5565b9060209161102e81518092818552858086019101610ff2565b601f01601f1916010190565b906003821015610afe5752565b81601f820112156101845780359067ffffffffffffffff82116106e6576040519261107c601f8401601f191660200185610f2a565b8284526020838301011161018457816000926020809301838601378301015290565b6000546001600160a01b031633036110b257565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b156110fd57565b60405162461bcd60e51b815260206004820152600e60248201526d125b9d985b1a59081a9bd888125160921b6044820152606490fdfeb17f281799264da36ce0121b71ef89948a9e0f0e7ee16a7a0eb2e0efec3565f0a264697066735822122073a4ced0f66f645f014453e78edd824b403883794e95a6dffc38523da77a23b164736f6c63430008140033",
+    "deployedBytecode": "0x608080604052600436101561001357600080fd5b60003560e01c908163145dfca814610eb557508063180aedf314610e355780634c5d8a0f14610e175780634c69c00f14610da05780634cac35c614610cb957806351cc0ba1146108bb578063715018a6146108625780637397454d146105065780638da5cb5b146104dd578063a6c58b6314610474578063a89ae4ba1461044b578063bed34bba146103a7578063c4d66de8146101895763f2fde38b146100b957600080fd5b34610184576020366003190112610184576004356001600160a01b0381811691829003610184576100e861109e565b811561013057600054826bffffffffffffffffffffffff60a01b821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0600080a3005b60405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608490fd5b600080fd5b34610184576020366003190112610184576004356001600160a01b0381811691829003610184576000549060ff8260a81c161591828093610397575b801561037d575b156103215760ff60a01b198116600160a01b1760005582610309575b506101f161109e565b82156102b857826001549182161461027a576001600160a01b0319168217600155604051917f107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb8600080a261024157005b6000805460ff60a81b19169055600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb384740249890602090a1005b60405162461bcd60e51b81526020600482015260166024820152754f7261636c6520416464726573732069732073616d6560501b6044820152606490fd5b60405162461bcd60e51b8152602060048201526024808201527f496e76616c6964204f7261636c6520416464726573733a207a65726f206164646044820152637265737360e01b6064820152608490fd5b61ffff60a01b191661010160a01b17600055836101e8565b60405162461bcd60e51b815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201526d191e481a5b9a5d1a585b1a5e995960921b6064820152608490fd5b50303b1580156101cc5750600160ff8260a01c16146101cc565b50600160ff8260a01c16106101c5565b346101845760403660031901126101845767ffffffffffffffff600435818111610184576103d9903690600401611047565b90602435908111610184576103f2903690600401611047565b6040519160209261041f8482816104128183019687815193849201610ff2565b8101038084520182610f2a565b5190209060405161043f8482816104128183019687815193849201610ff2565b51902014604051908152f35b34610184576000366003190112610184576001546040516001600160a01b039091168152602090f35b346101845760203660031901126101845760043561049560025482106110f6565b60005260036020526104c860406000206104d96104bc600260ff6003850154169301610f4c565b6040519384809461103a565b604060208401526040830190611015565b0390f35b34610184576000366003190112610184576000546040516001600160a01b039091168152602090f35b346101845760603660031901126101845767ffffffffffffffff6004356024358281116101845761053b903690600401611047565b60443583811161018457610553903690600401611047565b60018054919290916001600160a01b031633036108265761057760025485106110f6565b8051151590846000526003926020948486526040600020936000146106fc57508383018160ff19825416179055600283019180519788116106e6576105bc8354610ed4565b601f811161069d575b508590601f891160011461062557978060ff9695949381936000805160206111348339815191529a9b60009461061a575b50501b9160001990861b1c19161790555b015416610617604051809261103a565ba2005b015192508b806105f6565b9790601f1982169884600052876000209960005b818110610688575091600080516020611134833981519152999a918460ff99989796959410610670575b505050811b019055610607565b015160001983881b60f8161c19169055898080610663565b838301518c559a85019a928901928901610639565b8360005286600020601f8a0160051c810191888b106106dc575b601f0160051c019083905b8281106106d05750506105c5565b600081550183906106c2565b90915081906106b7565b634e487b7160e01b600052604160045260246000fd5b9150838301600260ff19825416179055600283019180519788116106e6576107248354610ed4565b601f81116107dd575b508590601f891160011461077e57978060ff9695949381936000805160206111348339815191529a9b600094610773575b50501b9160001990861b1c1916179055610607565b015192508b8061075e565b9790601f1982169884600052876000209960005b8181106107c8575091600080516020611134833981519152999a918460ff9998979695941061067057505050811b019055610607565b838301518c559a85019a928901928901610792565b8360005286600020601f8a0160051c810191888b1061081c575b601f0160051c019083905b82811061081057505061072d565b60008155018390610802565b90915081906107f7565b60405162461bcd60e51b815260206004820152601460248201527343616c6c6572206973206e6f74206f7261636c6560601b6044820152606490fd5b346101845760003660031901126101845761087b61109e565b600080546001600160a01b0319811682556001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b346101845760203660031901126101845760043567ffffffffffffffff8111610184576108ec903690600401611047565b600254906000198214610ca3576001820160025560405161090c81610f0e565b828152602081018281526040516020810181811067ffffffffffffffff8211176106e65760405260008152604083015260006060830152836000526003602052604060002090825182555180519067ffffffffffffffff82116106e65781906109786001850154610ed4565b601f8111610c50575b50602090601f8311600114610be357600092610bd8575b50508160011b916000199060031b1c19161760018201555b604082015180519067ffffffffffffffff82116106e6576109d46002840154610ed4565b601f8111610b91575b50602090601f8311600114610b1f57918060609492600394600092610b14575b50508160011b9160001990851b1c19161760028201555b019101516003811015610afe57600092602092610a949260ff8019835416911617905560018060a01b036001541690604051948580948193634b04236b60e01b835289600484015260606024840152601060648401526f34b6b0b3b2afb3b2b732b930ba34b7b760811b608484015260a0604484015260a4830190611015565b03925af18015610af257610ac7575b602082806000805160206111348339815191528360405160008152a2604051908152f35b602090813d8311610aeb575b610add8183610f2a565b810103126101845781610aa3565b503d610ad3565b6040513d6000823e3d90fd5b634e487b7160e01b600052602160045260246000fd5b0151905088806109fd565b90601f198316916002850160005260206000209260005b818110610b7957509260019285926003966060989610610b61575b505050811b016002820155610a14565b015160001983871b60f8161c19169055888080610b51565b92936020600181928786015181550195019301610b36565b600284016000526020600020601f840160051c810160208510610bd1575b601f830160051c82018110610bc55750506109dd565b60008155600101610baf565b5080610baf565b015190508680610998565b600185016000908152602081209350601f198516905b818110610c385750908460019594939210610c1f575b505050811b0160018201556109b0565b015160001960f88460031b161c19169055868080610c0f565b92936020600181928786015181550195019301610bf9565b909150600184016000526020600020601f840160051c810160208510610c9c575b90849392915b601f830160051c82018110610c8d575050610981565b60008155859450600101610c77565b5080610c71565b634e487b7160e01b600052601160045260246000fd5b34610184576020806003193601126101845760043560006060604051610cde81610f0e565b82815281858201528160408201520152610cfb60025482106110f6565b60005260038152604060002060405190610d1482610f0e565b80548252610d2460018201610f4c565b83830190815260ff6003610d3a60028501610f4c565b93604086019485520154169060608401926003831015610afe57610d81610d94926104d99486526040519788978189525190880152516080604088015260a0870190611015565b9051858203601f19016060870152611015565b9151608084019061103a565b34610184576020366003190112610184576004356001600160a01b038181169182900361018457610dcf61109e565b81156102b857816001549182161461027a576001600160a01b03191681176001557f107a9fafffb7ac890f780879e423760c9ffea8dcee8045681f40f542aede2cb8600080a2005b34610184576000366003190112610184576020600254604051908152f35b3461018457602036600319011261018457600435600052600360205260406000208054610e6460018301610f4c565b916104d9610eaa60ff6003610e7b60028601610f4c565b9401541692610e9c6040519687968752608060208801526080870190611015565b908582036040870152611015565b91606084019061103a565b3461018457602036600319011261018457602090600254600435108152f35b90600182811c92168015610f04575b6020831014610eee57565b634e487b7160e01b600052602260045260246000fd5b91607f1691610ee3565b6080810190811067ffffffffffffffff8211176106e657604052565b90601f8019910116810190811067ffffffffffffffff8211176106e657604052565b9060405191826000825492610f6084610ed4565b908184526001948581169081600014610fcf5750600114610f8c575b5050610f8a92500383610f2a565b565b9093915060005260209081600020936000915b818310610fb7575050610f8a93508201013880610f7c565b85548884018501529485019487945091830191610f9f565b915050610f8a94506020925060ff191682840152151560051b8201013880610f7c565b60005b8381106110055750506000910152565b8181015183820152602001610ff5565b9060209161102e81518092818552858086019101610ff2565b601f01601f1916010190565b906003821015610afe5752565b81601f820112156101845780359067ffffffffffffffff82116106e6576040519261107c601f8401601f191660200185610f2a565b8284526020838301011161018457816000926020809301838601378301015290565b6000546001600160a01b031633036110b257565b606460405162461bcd60e51b815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b156110fd57565b60405162461bcd60e51b815260206004820152600e60248201526d125b9d985b1a59081a9bd888125160921b6044820152606490fdfeb17f281799264da36ce0121b71ef89948a9e0f0e7ee16a7a0eb2e0efec3565f0a264697066735822122073a4ced0f66f645f014453e78edd824b403883794e95a6dffc38523da77a23b164736f6c63430008140033",
+    "devdoc": {
+      "events": {
+        "Initialized(uint8)": {
+          "details": "Triggered when the contract has been initialized or reinitialized."
+        }
+      },
+      "kind": "dev",
+      "methods": {
+        "owner()": {
+          "details": "Returns the address of the current owner."
+        },
+        "renounceOwnership()": {
+          "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+        },
+        "transferOwnership(address)": {
+          "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+        }
+      },
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {},
+      "version": 1
+    },
+    "storageLayout": {
+      "storage": [
+        {
+          "astId": 506,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "_owner",
+          "offset": 0,
+          "slot": "0",
+          "type": "t_address"
+        },
+        {
+          "astId": 6,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "_initialized",
+          "offset": 20,
+          "slot": "0",
+          "type": "t_uint8"
+        },
+        {
+          "astId": 9,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "_initializing",
+          "offset": 21,
+          "slot": "0",
+          "type": "t_bool"
+        },
+        {
+          "astId": 915,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "oracleAddress",
+          "offset": 0,
+          "slot": "1",
+          "type": "t_address"
+        },
+        {
+          "astId": 658,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "jobCount",
+          "offset": 0,
+          "slot": "2",
+          "type": "t_uint256"
+        },
+        {
+          "astId": 684,
+          "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+          "label": "jobs",
+          "offset": 0,
+          "slot": "3",
+          "type": "t_mapping(t_uint256,t_struct(Job)679_storage)"
+        }
+      ],
+      "types": {
+        "t_address": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "t_bool": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        },
+        "t_enum(JobStatus)662": {
+          "encoding": "inplace",
+          "label": "enum ColabXCartoonCreation.JobStatus",
+          "numberOfBytes": "1"
+        },
+        "t_mapping(t_uint256,t_struct(Job)679_storage)": {
+          "encoding": "mapping",
+          "key": "t_uint256",
+          "label": "mapping(uint256 => struct ColabXCartoonCreation.Job)",
+          "numberOfBytes": "32",
+          "value": "t_struct(Job)679_storage"
+        },
+        "t_string_storage": {
+          "encoding": "bytes",
+          "label": "string",
+          "numberOfBytes": "32"
+        },
+        "t_struct(Job)679_storage": {
+          "encoding": "inplace",
+          "label": "struct ColabXCartoonCreation.Job",
+          "members": [
+            {
+              "astId": 671,
+              "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+              "label": "id",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 673,
+              "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+              "label": "message",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_string_storage"
+            },
+            {
+              "astId": 675,
+              "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+              "label": "response",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_string_storage"
+            },
+            {
+              "astId": 678,
+              "contract": "contracts/ColabXCartoonCreation.sol:ColabXCartoonCreation",
+              "label": "status",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_enum(JobStatus)662"
+            }
+          ],
+          "numberOfBytes": "128"
+        },
+        "t_uint256": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "t_uint8": {
+          "encoding": "inplace",
+          "label": "uint8",
+          "numberOfBytes": "1"
+        }
+      }
+    }
+  }

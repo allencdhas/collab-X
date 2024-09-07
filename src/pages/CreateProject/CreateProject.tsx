@@ -1,8 +1,12 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef, ChangeEvent, useEffect } from 'react';
+
+import { ethers } from 'ethers';
 
 
 import sendLighthouse from 'helper/lighthouseUpload';
 import createProjectKinto from 'helper/createProjectKinto';
+
+import galadrielHelper from 'helper/galadrielHelper';
 
 
 
@@ -65,6 +69,23 @@ export default function CreateProject() {
     createProjectKinto("bafkreihumuu2xcqu5qd6ufhurhzcpb5bdyqyseibt4njsbiqf6d4erjll4", title);
 
   }
+
+  async function galCall(aiPrompt: string) {
+    const res = galadrielHelper(aiPrompt);
+    
+  }
+
+
+  async function connectMetaMask(){
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = provider.getSigner();
+    const address = (await signer).address;
+    console.log("Connected to MetaMask with address:", address);
+  }
+  
+  useEffect(() => {
+    connectMetaMask();
+  });
 
   
 
@@ -148,7 +169,7 @@ export default function CreateProject() {
               </div>
               <button
                 className="bg-purple-500 text-white px-4 py-2 rounded-r-full"
-                onClick={() => console.log('Generate')}
+                onClick={() => galCall(aiPrompt)}
               >
                 Generate
               </button>
