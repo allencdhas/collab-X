@@ -1,31 +1,82 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import {
+  FiHeart,
+  FiRepeat,
+  FiMaximize2,
+  FiX,
+  FiCopy,
+  FiUserPlus,
+} from "react-icons/fi";
 
 
-
-export default function Projects() {
-    const imageSrc = "/bglogo.png";
-    const projectName = "My Project";
-    const description = "This is my project description ansfjaebfqehjbfqiajd ";
-
+interface ProjectCardProps {
+    
+    title: string;
+    author: string;
+    image: string;
+    //isNew: boolean;
+    views: number;
+    likes: number;
+    //onExpand: (videoUrl: string) => void;
+  }
+  
+const Projects: React.FC<ProjectCardProps> = ({
+    title,
+    author,
+    image,
+    //isNew,
+    views,
+    likes,
+    //onExpand,
+  }) => {
+    const [isHovered, setIsHovered] = useState(false);
+  
     return (
-
-        <main className="pb-10">
-            <div className="pb-10 ">
-                <h1 className="flex justify-center font-semibold text-3xl text-white">Projects</h1>
-            </div>
-            <div className="flex justify-center items-center pt-5">
-                <div className="max-w-xs rounded-3xl overflow-hidden shadow-lg bg-black border-2 border-purple-950">
-                    <img className="p-5 object-cover" src={imageSrc} alt={projectName}  />
-                    <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2 text-white text-center">{projectName}</div>
-                    <p className="text-gray-300 text-base text-center">
-                        {description}
-                    </p>
-                    </div>
-                </div>
-            </div>
+      <div
+        className="mt-4 bg-gradient-to-br from-blue-800 to-purple-700  rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 relative"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="relative">
+          {isHovered ? (
+            <video
+              src={image}
+              className="w-full h-64 object-cover"
+              autoPlay
+              muted
+              loop
+            />
+          ) : (
+            <img src={image} alt={title} className="w-full h-64 object-cover" />
+          )}
+          {/* {isNew && (
+            <span className="absolute top-2 left-2 bg-blue-500 px-2 py-1 rounded text-sm">
+              New
+            </span>
+          )} */}
+          <button
+            className="absolute top-2 right-2 bg-black bg-opacity-50 px-2 py-1 rounded text-sm hover:bg-opacity-75 transition-colors duration-300"
             
-        </main>
-        
+          >
+            <FiMaximize2 />
+          </button>
+        </div>
+        <div className="p-4">
+          <h3 className="text-lg font-semibold mb-1">{title}</h3>
+          <p className="text-blue-200 mb-2">{author}</p>
+          <div className="flex justify-between items-center">
+            <div className="flex space-x-2 text-sm text-blue-200">
+              <span>{views} views</span>
+              <span>{likes} likes</span>
+            </div>
+            <div className="flex space-x-2">
+              <FiRepeat className="text-blue-200 hover:text-white transition-colors duration-300" />
+              <FiHeart className="text-blue-200 hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+        </div>
+      </div>
     );
-}; 
+  };
+
+  export default Projects;

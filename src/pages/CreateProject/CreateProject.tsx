@@ -1,93 +1,217 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 
-function CreateProject() {
-  const [projectDescription, setProjectDescription] = useState<string>('');
-  const [reward, setReward] = useState<string>('');
-  const [imageOrVideo, setImageOrVideo] = useState<string>('');
-  const [prompt, setPrompt] = useState<string>('');
 
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProjectDescription(e.target.value);
+import sendLighthouse from 'helper/lighthouseUpload';
+import createProjectKinto from 'helper/createProjectKinto';
+
+
+
+type Contributor = 'AI image/video generator' | 'artist' | 'marketer' | 'cartoonist' | 'sponsor' | 'animator' | 'musician' | 'open position';
+
+
+interface CollabCard {
+  contributors: Contributor[];
+  description: string;
+  reward: string;
+}
+
+export default function CreateProject() {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [collabCard, setCollabCard] = useState<CollabCard>({
+    contributors: [],
+    description: '',
+    reward: '',
+  });
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const contributorOptions: Contributor[] = [
+    'AI image/video generator', 'artist', 'marketer', 'cartoonist', 
+    'sponsor', 'animator', 'musician', 'open position',
+  ];
+
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
   };
 
-  const handleRewardChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReward(e.target.value);
+  const handleContributorAdd = (contributor: Contributor) => {
+    setCollabCard((prev) => ({
+      ...prev,
+      contributors: [...prev.contributors, contributor],
+    }));
   };
 
-  const handleImageOrVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageOrVideo(e.target.value);
-  };
-
-  const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrompt(e.target.value);
+  const handleContributorRemove = (contributor: Contributor) => {
+    setCollabCard((prev) => ({
+      ...prev,
+      contributors: prev.contributors.filter((c) => c !== contributor),
+    }));
   };
 
   const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log('Project Description:', projectDescription);
-    console.log('Reward:', reward);
-    console.log('Image or Video:', imageOrVideo);
-    console.log('Prompt:', prompt);
+    console.log({ title, description, image, aiPrompt, collabCard });
+    // transaction call --> createProject(string memory uri, string memory _title)    
+    sendLighthouse(title, description, collabCard.contributors, collabCard.reward);
+    createProjectKint();
+    
+
+    alert('Project submitted! Check the console for project data.');
   };
+  async function createProjectKint() {
+    createProjectKinto("bafkreihumuu2xcqu5qd6ufhurhzcpb5bdyqyseibt4njsbiqf6d4erjll4", title);
+
+  }
+
+  
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">CollabX</h1>
-        <h2 className="text-2xl font-bold">Project Title</h2>
-        <p className="text-gray-400">Input short and sweet project description (200 words)!</p>
-      </header>
-      <main className="w-full max-w-xl">
-        <section className="mb-8">
-          <h3 className="text-xl font-bold mb-4">Make Your ColabX Card (Initial contributors/support you need)</h3>
-          <div className="flex flex-col space-y-4">
-            <input
-              type="text"
-              placeholder="Description"
-              className="bg-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onChange={handleDescriptionChange}
-            />
-            <input
-              type="text"
-              placeholder="Reward"
-              className="bg-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onChange={handleRewardChange}
-            />
-          </div>
-        </section>
-        <section className="mb-8">
-          <h3 className="text-xl font-bold mb-4">Upload image or video</h3>
-          <div className="flex flex-col space-y-4">
-            <div className="flex items-center bg-gray-800 rounded-md px-4 py-2">
-              <input
-                type="text"
-                placeholder="Image or Video"
-                className="flex-1 bg-transparent focus:outline-none"
-                onChange={handleImageOrVideoChange}
-              />
-              <button className="text-blue-500 hover:text-blue-400 focus:outline-none">+</button>
-            </div>
-            <p className="text-gray-400">...Or ask AI agent to customize cover/copy/texts</p>
-            <div className="flex items-center bg-gray-800 rounded-md px-4 py-2">
-              <input
-                type="text"
-                placeholder="Prompt"
-                className="flex-1 bg-transparent focus:outline-none"
-                onChange={handlePromptChange}
-              />
-              <button className="text-purple-500 hover:text-purple-400 focus:outline-none">Generate</button>
-            </div>
-          </div>
-        </section>
-        <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-md focus:outline-none"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </main>
-    </div>
-  );
-};
+    <div className="min-h-screen bg-gray-900 text-white">
 
-export default CreateProject;
+      {/* Header/NavBar */}
+      <header className="flex justify-between items-center p-4 bg-gray-800">
+      <a href='./'> <div className="text-2xl font-bold">CollabX</div></a>   <nav className="space-x-4">
+          {['Home', 'Collaborate', 'Funding', 'Join CollabX Team'].map((item) => (
+            <a
+              href="/"
+              key={item}
+              className="hover:text-purple-400 transition-colors duration-300"
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center">
+                <span className="mr-2">Ley</span>
+                <div className="w-10 h-10 rounded-full bg-purple-500"></div>
+              </div>
+      </header>
+
+
+      <div className="p-8 mx-auto  bg-gray-900 shadow-lg rounded-lg overflow-hidden">
+
+        <div className="flex">
+          <div className="w-1/2 p-8 bg-gray-900 text-white">
+
+            <input
+              type="text"
+              placeholder="Project Title"
+              className="w-full p-2 mb-4 bg-gray-800 text-white rounded"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Input short and sweet project description (200 words)!"
+              className="w-full p-2 h-32 bg-gray-800 text-white rounded resize-none"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="w-1/2 p-8 bg-gray-200">
+            <div className="flex justify-end mb-4">
+              
+            </div>
+            <div
+              className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center cursor-pointer"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              {image ? (
+                <img src={URL.createObjectURL(image)} alt="Uploaded" className="max-w-full h-auto" />
+              ) : (
+                <>
+                  <span className="text-4xl">+</span>
+                  <p>Upload image or video</p>
+                </>
+              )}
+            </div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleImageUpload}
+              accept="image/*,video/*"
+            />
+            <p className="text-center my-4 text-gray-600">...Or ask AI agent to customize cover/copy/texts</p>
+            <div className="flex items-center bg-white rounded-full overflow-hidden shadow-inner">
+              <div className="flex-1 text-black">
+                <input
+                  type="text"
+                  placeholder="Prompt"
+                  className="w-full p-2 outline-none"
+                  value={aiPrompt}
+                  onChange={(e) => setAiPrompt(e.target.value)}
+                  
+                />
+              </div>
+              <button
+                className="bg-purple-500 text-white px-4 py-2 rounded-r-full"
+                onClick={() => console.log('Generate')}
+              >
+                Generate
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="p-8 bg-gray-900 text-white">
+          <h2 className="text-xl font-semibold mb-4">
+            Make Your Collab X Card (Initial contributors/support you need)
+          </h2>
+          <p className="text-sm text-gray-400 mb-4">
+            Choose those talent who can scale up your contents to next level.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {collabCard.contributors.map((contributor, index) => (
+              <div key={index} className="bg-gray-700 rounded-full px-3 py-1 flex items-center">
+                <span>{contributor}</span>
+                <button onClick={() => handleContributorRemove(contributor)} className="ml-2">
+                  ✕
+                </button>
+              </div>
+            ))}
+            <select
+              className="bg-gray-700 rounded-full px-3 py-1"
+              onChange={(e) => handleContributorAdd(e.target.value as Contributor)}
+              value=""
+            >
+              <option value="" disabled>Add contributor</option>
+              {contributorOptions
+                .filter((option) => !collabCard.contributors.includes(option))
+                .map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+                ))}
+            </select>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block mb-2">Description</label>
+              <textarea
+                className="w-full p-2 bg-gray-800 rounded resize-none"
+                value={collabCard.description}
+                onChange={(e) => setCollabCard((prev) => ({ ...prev, description: e.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block mb-2">Reward</label>
+              <textarea
+                className="w-full p-2 bg-gray-800 rounded resize-none"
+                value={collabCard.reward}
+                onChange={(e) => setCollabCard((prev) => ({ ...prev, reward: e.target.value }))}
+              />
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <button
+              className="bg-purple-500 text-white px-8 py-2 rounded-full"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

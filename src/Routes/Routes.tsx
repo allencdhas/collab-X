@@ -2,6 +2,7 @@ import App from "App";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home"
 import CreateProject from "../pages/CreateProject/CreateProject"
+import DisplayProject from "pages/DisplayProject/DisplayProject";
 
 export const router = createBrowserRouter([
     {
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
         children:[
             {path: "/", element: <Home />},
             {path: "/create", element: <CreateProject />},
-            // {path: "/projects", element: <Home />},
+            {path: "/project", element: <DisplayProject />},
             // {path: "/projects", element: <Home />}
         ]
     }
