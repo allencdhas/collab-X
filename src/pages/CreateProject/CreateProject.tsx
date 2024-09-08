@@ -59,11 +59,10 @@ export default function CreateProject() {
   const handleSubmit = () => {
     console.log({ title, description, image, aiPrompt, collabCard });
     // transaction call --> createProject(string memory uri, string memory _title)    
-    sendLighthouse(title, description, collabCard.contributors, collabCard.reward);
+    const res =  sendLighthouse(title, description, collabCard.contributors, collabCard.reward);
+    console.log(res);
     createProjectKint();
-    
-
-    alert('Project submitted! Check the console for project data.');
+  
   };
   async function createProjectKint() {
     createProjectKinto("bafkreihumuu2xcqu5qd6ufhurhzcpb5bdyqyseibt4njsbiqf6d4erjll4", title);

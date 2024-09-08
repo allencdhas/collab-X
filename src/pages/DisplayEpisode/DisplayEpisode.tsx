@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import video from "../../../public/FeverDreamSyndromeSheep.mp4";
 
 interface EpisodeContent {
   type: "text" | "video";
@@ -48,7 +49,7 @@ Yeah, I guess it doesn’t matter at all.
 
     {
       type: "video",
-      content: "../../../FeverDreamVideoSheep.mp4",
+      content: "../../../public/FeverDreamSyndromeSheep.mp4",
     },
     {
       type: "text",

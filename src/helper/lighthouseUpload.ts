@@ -8,7 +8,7 @@ async function sendLighthouse(title: string, description: string, artist:Array<s
     const metadata = {
         "name": title,
         "description": description,
-        "image": "ipfs://QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco/images/cosmic_creatures.png",
+        "image": "https://storage.googleapis.com/galadriel-assets/033dd10b-4af9-4518-b190-d19f5616e1f2.png",
         "artists": artist,
         "rewards": "0.1 ETH",
     };
@@ -18,8 +18,9 @@ async function sendLighthouse(title: string, description: string, artist:Array<s
       metadataString,
       apiKey
     )
-    return res.data.cid;
-    //console.log(res.data.cid);
+    console.log(res);
+    return res;
+    
 
 }
 

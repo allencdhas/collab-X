@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
+  FiHeart,
     FiX,
     FiCopy,
     FiUserPlus,
+    FiRepeat,
   } from "react-icons/fi";
 
 import { createKintoSDK, KintoAccountInfo } from 'kinto-web-sdk';
@@ -11,12 +13,26 @@ import {
   defineChain, createPublicClient, http
 } from 'viem';
 
+
 import Projects from 'components/Projects/Projects';
 
 
 import contractsJSON from '../../../public/abis/7887.json';
 import 'index.css';
 import appAbi from '../../../public/abis/appAbi.json';
+import React from 'react';
+import { title } from 'process';
+
+
+interface ProjectView {
+  uri: string;
+  creatorWallet: string;
+  title: string;
+  contributions: {
+    uri: string;
+    contributorWallet: string;
+  }[];
+}
 
 interface KYCViewerInfo {
   isIndividual: boolean;
@@ -27,7 +43,249 @@ interface KYCViewerInfo {
   getWalletOwners: Address[];
 }
 
-export const collabxAbi = appAbi.abi;
+export const collabxAbi = [
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "addContribution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "contributorWallet",
+				"type": "address"
+			}
+		],
+		"name": "ContributionAdded",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			}
+		],
+		"name": "createProject",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "creatorWallet",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			}
+		],
+		"name": "ProjectCreated",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "viewAllProjects",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "creatorWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "contributorWallet",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Projects.Contribution[]",
+						"name": "contributions",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct Projects.ProjectView[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			}
+		],
+		"name": "viewProjectById",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "creatorWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "contributorWallet",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Projects.Contribution[]",
+						"name": "contributions",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct Projects.ProjectView",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			}
+		],
+		"name": "viewProjectsByCreator",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "creatorWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "contributorWallet",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Projects.Contribution[]",
+						"name": "contributions",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct Projects.ProjectView[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+const projectData: unknown[] = [];
 
 
 const kinto = defineChain({
@@ -53,10 +311,11 @@ const kinto = defineChain({
 const Home = () => {
   const [accountInfo, setAccountInfo] = useState<KintoAccountInfo | undefined>(undefined);
   const [kycViewerInfo, setKYCViewerInfo] = useState<any | undefined>(undefined);
+  const [projects, setProjects] = useState<ProjectView[]>([]);
 
   //const [loading, setLoading] = useState<boolean>(false);
-  const kintoSDK = createKintoSDK('0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3');
-  const collabxAddress = "0x32F237f3b0BE5B5e19A756b187C0EB89926f61a3" as Address;
+  const kintoSDK = createKintoSDK('0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8');
+  const collabxAddress = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8" as Address;
 
   //const [facetAddress, setFacetAddress] = useState<Address | undefined>(undefined);
 
@@ -82,6 +341,9 @@ const Home = () => {
     });
     // data is an array of addresses
     console.log('Projects:', data);
+    projectData.push(data);
+    console.log('ProjectData:', projectData);
+    setProjects(projectData as ProjectView[]);
   }
 
 
@@ -165,7 +427,8 @@ const Home = () => {
 
   // todo: add info about the dev portal and link
   return (
-    <div className="bg-gradient-to-br from-blue-900 via-purple-800 to-indigo-900 text-white min-h-screen relative overflow-hidden">
+    <div>
+      <div className="bg-gradient-to-br from-blue-900 via-purple-800 to-indigo-900 text-white min-h-screen relative overflow-hidden">
       {/* Star background */}
       <div className="absolute inset-0 z-0">
         {[...Array(100)].map((_, i) => (
@@ -182,6 +445,9 @@ const Home = () => {
           />
         ))}
       </div>
+
+      
+
 
       {/* Header/NavBar */}
       <header className="relative z-10 flex justify-between items-center p-4 mr-4 bg-gradient-to-r from-blue-900 to-purple-800">
@@ -218,8 +484,17 @@ const Home = () => {
         </button>
       </header>
 
+      {projects.map((project, index) => (
+        <>
+          <ProjectCardNew
+            title={project.title}
+            author={project.creatorWallet}
+          />
+        </>
+      ))}
+
       {/* Main Section */}
-      <main className="relative z-10 p-16 space-y-8">
+      <div className="relative z-10 p-16 space-y-8">
         {/* New/Popular Toggle */}
         <div className="flex justify-between items-center mb-8">
           <div className="space-x-4 text-2xl">
@@ -268,7 +543,8 @@ const Home = () => {
               </button>
             )
           )}
-        </div>
+      </div>
+    </div>
 
 
 {/* Project Cards */}
@@ -321,6 +597,7 @@ const Home = () => {
                 views={600}
                 likes={150}
               />
+
                       </a>
             </>
           )}
@@ -336,13 +613,7 @@ const Home = () => {
             Contact
           </button>
         </footer>
-
-
-      </main>
-
-
-
-      {/* Contact Popup */}
+         {/* Contact Popup */}
      {showContactPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
           <div className="bg-gradient-to-br from-blue-900 to-purple-800 p-8 rounded-lg max-w-2xl relative">
@@ -387,7 +658,17 @@ const Home = () => {
           }
         `}
       </style>
+
     </div>
+    
+
+
+
+
+
+
+     
+
   );
 }
 
@@ -466,4 +747,34 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     </div>
   );
 };
+
+
+interface ProjectCardNewProps {
+  title: string;
+  author: string;
+}
+
+function ProjectCardNew({ title, author }: ProjectCardNewProps){
+  
+  return (
+    <div
+    >
+      <div className="relative">
+
+      </div>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold mb-1">{title}</h3>
+        <p className="text-blue-200 mb-2">{author}</p>
+        <div className="flex justify-between items-center">
+          <div className="flex space-x-2">
+            <FiRepeat className="text-blue-200 hover:text-white transition-colors duration-300" />
+            <FiHeart className="text-blue-200 hover:text-white transition-colors duration-300" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 export default Home;

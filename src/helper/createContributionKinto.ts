@@ -250,7 +250,8 @@ const appABI = [
 ];
 
 
-  async function createProjectKinto(uri:string, title:string) {
+  async function createContributionKinto() {
+
     async function fetchAccountInfo() {
         try {
           await kintoSDK.connect();
@@ -261,8 +262,8 @@ const appABI = [
       };
     const data = encodeFunctionData({
       abi: appABI,
-      functionName: 'createProject',
-      args: ["bafkreihptfuli5aklbtmks2gaj7al3wdresiibigzbtfr742ylajqpem2q", 'hp'],
+      functionName: 'addContribution',
+      args: [0, "bafkreihptfuli5aklbtmks2gaj7al3wdresiibigzbtfr742ylajqpem2q"],
     });
     try {
       await fetchAccountInfo();
@@ -275,4 +276,4 @@ const appABI = [
 
   }
 
-export default createProjectKinto;
+export default createContributionKinto;

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import createContributionKinto from 'helper/createContributionKinto'
 
 type ContributorRole = 'Cartoonist' | 'AI generator' | 'Marketer'
 
@@ -28,6 +29,11 @@ interface ContributionCard {
   image: string
 }
 
+async function createContributionKintoFN() {
+  createContributionKinto();
+
+}
+
 const VideoPlayer: React.FC = () => {
   return (
     <div className="relative w-full h-64">
@@ -50,12 +56,15 @@ const ContributionModal: React.FC<ContributionModalProps> = ({ isOpen, onClose, 
 
   if (!isOpen) return null
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (fileInputRef.current && fileInputRef.current.files && fileInputRef.current.files[0]) {
+      await createContributionKintoFN();
       onSubmit(fileInputRef.current.files[0])
       onClose()
     }
+
+
   }
 
   return (
