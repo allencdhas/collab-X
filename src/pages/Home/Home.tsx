@@ -63,6 +63,24 @@ export const collabxAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "contributionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "approveContribution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -85,6 +103,25 @@ export const collabxAbi = [
 			}
 		],
 		"name": "ContributionAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "contributionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "ContributionApproved",
 		"type": "event"
 	},
 	{
@@ -162,6 +199,11 @@ export const collabxAbi = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -215,6 +257,11 @@ export const collabxAbi = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -268,6 +315,11 @@ export const collabxAbi = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -313,9 +365,12 @@ const Home = () => {
   const [kycViewerInfo, setKYCViewerInfo] = useState<any | undefined>(undefined);
   const [projects, setProjects] = useState<ProjectView[]>([]);
 
-  //const [loading, setLoading] = useState<boolean>(false);
-  const kintoSDK = createKintoSDK('0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8');
-  const collabxAddress = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8" as Address;
+
+const addressApp = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8";
+
+//import appABI from '../../public/abis/appAbi.json'
+const kintoSDK = createKintoSDK(addressApp);
+const collabxAddress = addressApp as Address;
 
   //const [facetAddress, setFacetAddress] = useState<Address | undefined>(undefined);
 
@@ -327,7 +382,7 @@ const Home = () => {
     }
   }
 
-  async function fetchProjects() {
+  async function fetchProject() {
     const client = createPublicClient({
       chain: kinto,
       transport: http(),
@@ -336,15 +391,16 @@ const Home = () => {
     const data = await client.readContract({
       address: collabxAddress,
       abi: collabxAbi,
-      functionName: 'viewAllProjects',
-      args: [],
+      functionName: 'viewProjectById',
+      args: ['6'],
     });
     // data is an array of addresses
     console.log('Projects:', data);
     projectData.push(data);
-    console.log('ProjectData:', projectData);
+    //console.log('ProjectData:', projectData);
     setProjects(projectData as ProjectView[]);
   }
+  
 
 
 
@@ -398,7 +454,8 @@ const Home = () => {
   useEffect(() => {
     fetchAccountInfo();
     //fetchCounter();
-    fetchProjects();
+    //fetchProjects();
+    fetchProject();
   });
 
   useEffect(() => {
@@ -484,14 +541,7 @@ const Home = () => {
         </button>
       </header>
 
-      {projects.map((project, index) => (
-        <>
-          <ProjectCardNew
-            title={project.title}
-            author={project.creatorWallet}
-          />
-        </>
-      ))}
+      
 
       {/* Main Section */}
       <div className="relative z-10 p-16 space-y-8">
@@ -601,6 +651,14 @@ const Home = () => {
                       </a>
             </>
           )}
+          {projects.map((project, index) => (
+        <>
+          <ProjectCardNew
+            title={project.title}
+            author={project.creatorWallet}
+          />
+        </>
+      ))}
         </div>
             
 

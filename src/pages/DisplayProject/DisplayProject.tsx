@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import createContributionKinto from 'helper/createContributionKinto'
+import approveContribution from 'helper/approveContribution'
 
 type ContributorRole = 'Cartoonist' | 'AI generator' | 'Marketer'
 
@@ -137,8 +138,9 @@ export default function LostCityPage() {
     setIsContributionModalOpen(true)
   }
 
-  const handleApprove = (id: number) => {
+  const handleApprove = async (id: number) => {
     console.log(`Approved contribution ${id}`)
+    await approveContribution();
     // Implement your approval logic here
   }
 

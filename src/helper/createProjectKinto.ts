@@ -3,11 +3,13 @@ import {
   encodeFunctionData, Address
 } from 'viem';
 
-//import appABI from '../../public/abis/appAbi.json'
-const kintoSDK = createKintoSDK('0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8');
-const collabxAddress = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8" as Address;
+const addressApp = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8";
 
-const appABI = [
+//import appABI from '../../public/abis/appAbi.json'
+const kintoSDK = createKintoSDK(addressApp);
+const collabxAddress = addressApp as Address;
+
+export const collabxAbi = [
 	{
 		"inputs": [
 			{
@@ -22,6 +24,24 @@ const appABI = [
 			}
 		],
 		"name": "addContribution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "contributionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "approveContribution",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -49,6 +69,25 @@ const appABI = [
 			}
 		],
 		"name": "ContributionAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "projectId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "contributionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "ContributionApproved",
 		"type": "event"
 	},
 	{
@@ -126,6 +165,11 @@ const appABI = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -179,6 +223,11 @@ const appABI = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -232,6 +281,11 @@ const appABI = [
 								"internalType": "address",
 								"name": "contributorWallet",
 								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "approval",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct Projects.Contribution[]",
@@ -260,9 +314,9 @@ const appABI = [
         }
       };
     const data = encodeFunctionData({
-      abi: appABI,
+      abi: collabxAbi,
       functionName: 'createProject',
-      args: ["bafkreihptfuli5aklbtmks2gaj7al3wdresiibigzbtfr742ylajqpem2q", 'hp'],
+      args: ["bafkreihptfuli5aklbtmks2gaj7al3wdresiibigzbtfr742ylajqpem2q", title],
     });
     try {
       await fetchAccountInfo();

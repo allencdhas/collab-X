@@ -4,7 +4,7 @@ import {
 } from 'viem';
 
 
-const addressApp = "0x40Fe1CB9fC88220553EA3bE4ff866Ea83a2fa2B8";
+const addressApp = "0x31bED6861814E0f715013cf451f538951B596634";
 
 //import appABI from '../../public/abis/appAbi.json'
 const kintoSDK = createKintoSDK(addressApp);
@@ -317,8 +317,8 @@ export const collabxAbi = [
       };
     const data = encodeFunctionData({
       abi: collabxAbi,
-      functionName: 'addContribution',
-      args: [1, "bafkreihrqsyazdbnxkdpulhsfgbo6zvfci4746yhspcb3svwzejdhcy6hm"],
+      functionName: 'approveContribution',
+      args: [1, 0],
     });
     try {
       await fetchAccountInfo();
