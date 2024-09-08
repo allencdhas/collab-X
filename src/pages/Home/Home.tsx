@@ -286,6 +286,7 @@ const Home = () => {
                   likes={45}
                 />
               </a>
+                   <a href={`/episode`}>
               <ProjectCard
                 title="Fever Dream Syndrome"
                 author="Apocalypse Man"
@@ -295,6 +296,7 @@ const Home = () => {
                 views={600}
                 likes={150}
               />
+                       </a>
             </>
           ) : (
             <>
@@ -319,6 +321,7 @@ const Home = () => {
                 views={600}
                 likes={150}
               />
+                      </a>
             </>
           )}
         </div>
@@ -393,52 +396,58 @@ interface ProjectCardProps {
   title: string;
   author: string;
   image: string;
+  video: string;
   isNew: boolean;
   views: number;
   likes: number;
-  onExpand: (videoUrl: string) => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   author,
   image,
+  video,
   isNew,
   views,
   likes,
-  onExpand,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    if (isHovered && videoRef.current) {
+      videoRef.current.play();
+    } else if (!isHovered && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [isHovered]);
 
   return (
     <div
-      className="mt-4 bg-gradient-to-br from-blue-800 to-purple-700  rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 relative"
+      className="mt-4 bg-gradient-to-br from-blue-800 to-purple-700 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        {isHovered ? (
-          <video
-            src={image}
-            className="w-full h-64 object-cover"
-            autoPlay
-            muted
-            loop
-          />
-        ) : (
-          <img src={image} alt={title} className="w-full h-64 object-cover" />
-        )}
+        <img
+          src={image}
+          alt={title}
+          className={`w-full h-64 object-cover ${isHovered ? 'hidden' : 'block'}`}
+        />
+        <video
+          ref={videoRef}
+          src={video}
+          className={`w-full h-64 object-cover ${isHovered ? 'block' : 'hidden'}`}
+          muted
+          loop
+          playsInline
+        />
         {isNew && (
           <span className="absolute top-2 left-2 bg-blue-500 px-2 py-1 rounded text-sm">
             New
           </span>
         )}
-        <button
-          className="absolute top-2 right-2 bg-black bg-opacity-50 px-2 py-1 rounded text-sm hover:bg-opacity-75 transition-colors duration-300"
-          onClick={() => onExpand(image)}
-        >
-          <FiMaximize2 />
-        </button>
       </div>
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-1">{title}</h3>
@@ -457,5 +466,4 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     </div>
   );
 };
-
 export default Home;
