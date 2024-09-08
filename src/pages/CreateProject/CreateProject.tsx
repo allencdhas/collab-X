@@ -94,16 +94,32 @@ export default function CreateProject() {
 
       {/* Header/NavBar */}
       <header className="flex justify-between items-center p-4 bg-gray-800">
-      <a href='./'> <div className="text-2xl font-bold">CollabX</div></a>   <nav className="space-x-4">
-          {['Home', 'Collaborate', 'Funding', 'Join CollabX Team'].map((item) => (
-            <a
-              href="/"
-              key={item}
-              className="hover:text-purple-400 transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
+    <a href='./'> <div className="text-2xl font-bold">CollabX</div></a>   
+      <nav className="space-x-4">
+          <a
+            href="./"
+            className="hover:text-blue-300 transition-colors duration-300"
+          >
+            Home
+          </a>
+          <a
+            href="/display"
+            className="hover:text-blue-300 transition-colors duration-300"
+          >
+            Collaborate
+          </a>
+          <a
+            href="./episode"
+            className="hover:text-blue-300 transition-colors duration-300"
+          >
+            Read
+          </a>
+          <a
+            href="./inspiration"
+            className="hover:text-blue-300 transition-colors duration-300"
+          >
+            AI
+          </a>
         </nav>
         <div className="flex items-center">
                 <span className="mr-2">Ley</span>
