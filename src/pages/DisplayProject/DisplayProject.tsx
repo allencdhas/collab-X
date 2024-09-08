@@ -28,6 +28,23 @@ interface ContributionCard {
   image: string
 }
 
+const VideoPlayer: React.FC = () => {
+  return (
+    <div className="relative w-full h-64">
+      <video
+        className="w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="../../../blueblood.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  )
+}
+
 const ContributionModal: React.FC<ContributionModalProps> = ({ isOpen, onClose, role, reward, onSubmit }) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -136,16 +153,11 @@ export default function LostCityPage() {
       <header className="flex justify-between items-center p-4 bg-gray-800">
         <a href='./'> <div className="text-2xl font-bold">CollabX</div></a>
         <nav className="space-x-4">
-          {['Home', 'Collaborate', 'Funding', 'Join CollabX Team'].map((item) => (
-            <a
-              href="#"
-              key={item}
-              className="hover:text-purple-400 transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
+  <a href="./" className="hover:text-blue-300 transition-colors duration-300">Home</a>
+  <a href="/display" className="hover:text-blue-300 transition-colors duration-300">Collaborate</a>
+  <a href="./episode" className="hover:text-blue-300 transition-colors duration-300">Read</a>
+  <a href="./inspiration" className="hover:text-blue-300 transition-colors duration-300">AI</a>
+</nav>
         <button className="bg-gradient-to-br from-purple-900  to-indigo-900 px-4 py-2 rounded hover:opacity-90 transition-opacity duration-300">
           Login
         </button>
@@ -153,14 +165,10 @@ export default function LostCityPage() {
 
       <main className="mx-auto p-16 overflow-hidden">
         <div className="mb-8 relative ">
-          <img
-            src="/placeholder.svg?height=256&width=1024"
-            alt="Lost City"
-            className="w-full h-64 object-cover rounded-lg"
-          />
+          <VideoPlayer />
           <div className="absolute bottom-4 left-4">
-            <h1 className="text-4xl font-bold mb-2">LOST CITY</h1>
-            <p className="mb-4">Initiating Your Journey..</p>
+            <h1 className="text-4xl font-bold mb-2">Blue Blooded Monsters</h1>
+            <p className="mb-4">Maja is a high school student, who lives in a countryside town. On a way to her grandparents, Maja witnesses a person crushing and fighting something on the top of running bus she was in. Since the day, Maja gets a visit of people from so-called “Public Sector”. Maja was forced to promise not to talk about what she saw, but her fate gets forced to cross path with a secret organization , rumors of drugs circulating the small town, and the mysterious man that has a super-natural power. </p>
             <div className="flex items-center space-x-4">
               <button
                 onClick={handleWatchNow}
