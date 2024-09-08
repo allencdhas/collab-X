@@ -149,8 +149,6 @@ const Home = () => {
 
 
 
-
-
   const [projectTitle, setProjectTitle] = useState("");
   const [activeTab, setActiveTab] = useState<"new" | "popular">("new");
   const [showContactPopup, setShowContactPopup] = useState(false);
@@ -272,29 +270,59 @@ const Home = () => {
           )}
         </div>
 
-        {/* Project Cards */}
-        <div className="grid grid-cols-2 gap-6 ">
-            
 
+{/* Project Cards */}
+        <div className="grid grid-cols-2 gap-6 ">
+          {activeTab === "new" ? (
             <>
               <a href={`/display`}>
-                <Projects
-                  title="Slice of Life in Kabuki-cho"
-                  author="Local Toyota"
-                  image="/placeholder.svg?height=300&width=500"
+                <ProjectCard
+                  title="Blue Blooded Monsters"
+                  author="Apocalypse Man"
+                  image="../../../blue.png"
+                  video="/blueblood.mp4"
+                  isNew={true}
                   views={234}
                   likes={45}
                 />
               </a>
-              <Projects
-                title="Slice of Life in Kabuki-cho (Comics)"
-                author="Local Toyota"
-                image="/placeholder.svg?height=300&width=500"
-            
-                views={234}
-                likes={45}
+              <ProjectCard
+                title="Fever Dream Syndrome"
+                author="Apocalypse Man"
+                image="../../../fever.png"
+                video="../../../FeverDreamSyndromeSheep.mp4"
+                isNew={false}
+                views={600}
+                likes={150}
               />
             </>
+          ) : (
+            <>
+              <a href={`/display`}>
+                <ProjectCard
+                  title="Blue Blooded Monsters"
+                  author="manzana podrida"
+                  image="../../../blue.png"
+                  video="../../../blueblood.mp4"
+                  isNew={false}
+                  views={500}
+                  likes={120}
+                />
+              </a>
+                  <a href={`/episode`}>
+              <ProjectCard
+                title="Fever Dream Syndrome"
+                author="Apocalypse Man"
+                image="../../../fever.png"
+                video="../../../FeverDreamSyndromeSheep.mp4"
+                isNew={false}
+                views={600}
+                likes={150}
+              />
+            </>
+          )}
+        </div>
+            
 
         </div>
         <footer className="relative z-10 py-4 text-center">
@@ -312,7 +340,7 @@ const Home = () => {
 
 
       {/* Contact Popup */}
-      {showContactPopup && (
+     {showContactPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
           <div className="bg-gradient-to-br from-blue-900 to-purple-800 p-8 rounded-lg max-w-2xl relative">
             <button
@@ -331,23 +359,16 @@ const Home = () => {
             </p>
             <p className="mb-4">
               But collaboration at CollabX isn't just for artists. We're also
-              looking for talented developers, business minds, and sponsors to
+              looking for talented developers, business minded volunteers to raise funds together, and sponsors to
               join our community and help bring these amazing stories to life.
             </p>
             <div className="flex space-x-4 mt-6">
-              <button
-                className="flex items-center bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-colors duration-300"
-                onClick={() => {
-                  /* Add join functionality */
-                }}
-              >
-                <FiUserPlus className="mr-2" /> Join Now
-              </button>
+             
               <button
                 className="flex items-center bg-green-600 px-4 py-2 rounded hover:bg-green-500 transition-colors duration-300"
                 onClick={copyLink}
               >
-                <FiCopy className="mr-2" /> Copy Invite Link
+                <FiCopy className="mr-2" /> Copy Discord Link
               </button>
             </div>
           </div>
@@ -366,5 +387,75 @@ const Home = () => {
     </div>
   );
 }
+
+
+interface ProjectCardProps {
+  title: string;
+  author: string;
+  image: string;
+  isNew: boolean;
+  views: number;
+  likes: number;
+  onExpand: (videoUrl: string) => void;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  title,
+  author,
+  image,
+  isNew,
+  views,
+  likes,
+  onExpand,
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="mt-4 bg-gradient-to-br from-blue-800 to-purple-700  rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative">
+        {isHovered ? (
+          <video
+            src={image}
+            className="w-full h-64 object-cover"
+            autoPlay
+            muted
+            loop
+          />
+        ) : (
+          <img src={image} alt={title} className="w-full h-64 object-cover" />
+        )}
+        {isNew && (
+          <span className="absolute top-2 left-2 bg-blue-500 px-2 py-1 rounded text-sm">
+            New
+          </span>
+        )}
+        <button
+          className="absolute top-2 right-2 bg-black bg-opacity-50 px-2 py-1 rounded text-sm hover:bg-opacity-75 transition-colors duration-300"
+          onClick={() => onExpand(image)}
+        >
+          <FiMaximize2 />
+        </button>
+      </div>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold mb-1">{title}</h3>
+        <p className="text-blue-200 mb-2">{author}</p>
+        <div className="flex justify-between items-center">
+          <div className="flex space-x-2 text-sm text-blue-200">
+            <span>{views} views</span>
+            <span>{likes} likes</span>
+          </div>
+          <div className="flex space-x-2">
+            <FiRepeat className="text-blue-200 hover:text-white transition-colors duration-300" />
+            <FiHeart className="text-blue-200 hover:text-white transition-colors duration-300" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Home;
