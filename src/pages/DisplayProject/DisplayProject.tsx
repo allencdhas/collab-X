@@ -104,7 +104,7 @@ export default function LostCityPage() {
   const [isContributionModalOpen, setIsContributionModalOpen] = useState(false)
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false)
   const [contributionCards, setContributionCards] = useState<ContributionCard[]>([
-    { id: 1, title: 'Character Design', contributor: 'John Doe', image: '/placeholder.svg?height=200&width=200' },
+    { id: 1, title: 'Character Design', contributor: 'John Doe', image: '../../../character_design.jpg' },
   ])
 
   const episodes: Episode[] = [
