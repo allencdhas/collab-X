@@ -49,7 +49,7 @@ Yeah, I guess it doesn’t matter at all.
 
     {
       type: "video",
-      content: "../../../public/FeverDreamSyndromeSheep.mp4",
+      content: "../../../FeverDreamSyndromeSheep.mp4",
     },
     {
       type: "text",
