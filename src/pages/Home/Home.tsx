@@ -279,7 +279,7 @@ const Home = () => {
                 <ProjectCard
                   title="Blue Blooded Monsters"
                   author="Apocalypse Man"
-                  image="../../../blue.png"
+                  image="../../../blue.jpg"
                   video="/blueblood.mp4"
                   isNew={true}
                   views={234}
@@ -289,7 +289,7 @@ const Home = () => {
               <ProjectCard
                 title="Fever Dream Syndrome"
                 author="Apocalypse Man"
-                image="../../../fever.png"
+                image="../../../fever.jpg"
                 video="../../../FeverDreamSyndromeSheep.mp4"
                 isNew={false}
                 views={600}
@@ -302,7 +302,7 @@ const Home = () => {
                 <ProjectCard
                   title="Blue Blooded Monsters"
                   author="manzana podrida"
-                  image="../../../blue.png"
+                  image="../../../blue.jpg"
                   video="../../../blueblood.mp4"
                   isNew={false}
                   views={500}
@@ -313,7 +313,7 @@ const Home = () => {
               <ProjectCard
                 title="Fever Dream Syndrome"
                 author="Apocalypse Man"
-                image="../../../fever.png"
+                image="../../../fever.jpg"
                 video="../../../FeverDreamSyndromeSheep.mp4"
                 isNew={false}
                 views={600}
