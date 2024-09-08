@@ -263,7 +263,7 @@ const appABI = [
     const data = encodeFunctionData({
       abi: appABI,
       functionName: 'addContribution',
-      args: [0, "bafkreihptfuli5aklbtmks2gaj7al3wdresiibigzbtfr742ylajqpem2q"],
+      args: [1, "bafkreihrqsyazdbnxkdpulhsfgbo6zvfci4746yhspcb3svwzejdhcy6hm"],
     });
     try {
       await fetchAccountInfo();
