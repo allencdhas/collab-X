@@ -1,20 +1,6 @@
 ![image](https://github.com/user-attachments/assets/afa04276-6e6f-401d-ad09-136f82aa86be)
 
-# Sample React Dapp Using Kinto Wallet SDK
-
-This is a sample application demonstrating the integration of the [Kinto Wallet SDK](https://www.npmjs.com/package/kinto-web-sdk). The Kinto Wallet SDK provides a seamless way to interact with Kinto's Ethereum Layer 2 solution, enabling fast and secure transactions.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Links](#links)
-
-## Prerequisites
-
-Before using the sample app, ensure you have a **Kinto Wallet**.
-
-Create an account by visiting [Kinto Onboarding](https://engen.kinto.xyz/onboarding).
+# CollabX
 
 ## Installation
 
